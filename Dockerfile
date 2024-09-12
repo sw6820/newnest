@@ -9,11 +9,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies
-RUN echo "before installation"
-RUN ls -la /app
-RUN npm install
-RUN echo "after installation"
-RUN ls -la /app
+RUN npm ci --omit=dev
 
 # Copy the rest of your application code to the container
 COPY . .
