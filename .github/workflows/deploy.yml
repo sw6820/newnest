@@ -35,7 +35,7 @@ jobs:
         run: docker build -t s6820w/newnest:latest .
 
       - name: Push Docker image to Docker Hub
-        run: docker push s6820w/newnest:latest .
+        run: docker push s6820w/newnest:latest
 
       - name: Deploy to EC2
         env:
@@ -47,8 +47,8 @@ jobs:
           echo "$EC2_KEY" > key.pem
           chmod 600 key.pem
           ssh -o StrictHostKeyChecking=no -i key.pem -p $EC2_PORT $EC2_USER@$EC2_HOST << 'EOF'
-            docker pull s6820w/newnest:latest .
+            docker pull s6820w/newnest:latest
             docker stop newnest || true
             docker rm newnest || true
-            docker run -d -p 80:3000 --name newnest s6820w/newnest:latest .
+            docker run -d -p 80:3000 --name newnest s6820w/newnest:latest
           EOF
