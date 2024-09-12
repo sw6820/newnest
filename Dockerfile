@@ -15,7 +15,11 @@ RUN npm install
 COPY . .
 
 # Build the application
+RUN echo "before build"
+RUN ls -la /app
 RUN npm run build
+RUN echo "after build"
+RUN ls -la /app
 
 # Expose the port the app runs on
 EXPOSE 3001
