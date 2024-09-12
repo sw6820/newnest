@@ -46,7 +46,7 @@ jobs:
         run: |
           echo "$EC2_KEY" > key.pem
           chmod 600 key.pem
-          ssh -o StrictHostKeyChecking=no -i key.pem -p $EC2_PORT $EC2_USER@$EC2_HOST << 'EOF'
+          ssh -vvv -o StrictHostKeyChecking=no -i key.pem $EC2_USER@$EC2_HOST << 'EOF'
             docker pull s6820w/newnest:latest
             docker stop newnest || true
             docker rm newnest || true
