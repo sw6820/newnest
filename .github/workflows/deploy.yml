@@ -50,5 +50,5 @@ jobs:
             docker pull s6820w/newnest:latest
             docker stop newnest || true
             docker rm newnest || true
-            docker run -d -p 80:3000 --name newnest s6820w/newnest:latest
+            docker run -d -p 8080:3000 --name newnest s6820w/newnest:latest
           EOF
